@@ -5,7 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +22,11 @@ public class JwtService {
 
 
     public JwtService(
-            @Value("${jwt.secret}") SecretKey secretKey,
+            @Value("${jwt.secret}") String secretKey,
             @Value("${jwt.access-expiration}") long accessTokenExpiryMs,
             @Value("${jwt.refresh-expiration}") long refreshTokenExpiryMs
     ) {
-        this.secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        this.secretKey = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
         this.accessTokenExpiryMs = accessTokenExpiryMs;
         this.refreshTokenExpiryMs = refreshTokenExpiryMs;
     }
