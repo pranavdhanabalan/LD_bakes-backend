@@ -1,9 +1,9 @@
 package com.foods.ldbakes.Model;
 
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
@@ -22,6 +22,17 @@ public class Menu {
     @DecimalMin("0.0")
     @Column(nullable = false)
     private BigDecimal dishPrice;
+
+    @NotBlank
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public Long getItemId() {
         return itemId;
